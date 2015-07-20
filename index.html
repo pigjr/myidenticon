@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Identicon Generator</title>
+
+  <link rel="shortcut icon" href="http://myidenticon.appspot.com/favicon.ico?v=2" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular.min.js"></script>
+  <script src="http://www.myersdaily.org/joseph/javascript/md5.js"></script>
+
+  <script>
+    function GetIdenticon($scope) {
+      $scope.setI = function(content) {
+        $scope.myid = content;
+        $scope.getI();
+      }
+      $scope.getI = function() {
+        $scope.myid_md5 = md5($scope.myid);
+        $scope.myid_img = 'http://www.gravatar.com/avatar/' + $scope.myid_md5 + '?s=256&d=identicon&r=PG'
+      };
+    }
+  </script>
+
+
+  <style>
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #f5f5f5;
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+  <div class="container" ng-controller="GetIdenticon">
+
+    <hr>
+    <div class="media page-header">
+      <a class="pull-left" href="#">
+        <img class="media-object" src="http://www.gravatar.com/avatar/4ca5119e2db53581c0caa47f96e4168d?s=64&d=identicon&r=PG" alt="myidenticon">
+      </a>
+      <div class="media-body">
+        <h1 class="media-heading">Identicon Generator</h1>
+      </div>
+    </div>
+
+
+
+    <label>Your ID/Email/Website:</label>
+    <input type="text" size="30" autofocus="autofocus" ng-model="myid" placeholder="Enter something here" ng-change="getI()"> e.g.:
+    <span class="glyphicon glyphicon-user badge" ng-mouseover="setI('Linker')"> ID</span>
+    <span class="glyphicon glyphicon-envelope badge" ng-mouseover="setI('pig.junior@gmail.com')"> Email</span>
+    <span class="glyphicon glyphicon-bookmark badge" ng-mouseover="setI('http://myidenticon.appspot.com')"> Website</span>
+    <hr>
+
+    <div class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object" src="{{myid_img}}" alt="Your Identicon Image">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading">Identicon Info</h4>
+        <p>Image source: <a href="{{myid_img}}">{{myid_img}}</a></p>
+        <p>MD5: {{myid_md5}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container text-muted">
+      <div class="row">
+
+        <div class="col-md-2">
+          <div class="container"> Author:
+
+            <!-- Button trigger modal -->
+            <button class="btn btn-lg" data-toggle="modal" data-target="#myModal">
+              <span class="glyphicon glyphicon-user"></span>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span aria-hidden="true">&times;</span>
+                      <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">My Profile</h4>
+                  </div>
+                  <div class="modal-body">
+                    <script src="//about.me/embed/zhulingkai?image=0"></script>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="col-md-4">
+
+          Social:
+          <!-- Place this tag where you want the +1 button to render. -->
+          <div class="g-plusone"></div>
+          <div class="fb-like" data-href="http://myidenticon.appspot.com" data-layout="button" data-action="recommend" data-show-faces="false" data-share="true"></div>
+
+        </div>
+
+
+
+        <div class="col-md-6">
+
+          Built with:
+
+          <a href="https://angularjs.org/">
+            <img src="https://builtwith.angularjs.org/img/AngularJS-large.png" height="50px">
+          </a>
+          <a href="http://getbootstrap.com/">
+            <img src="http://www.revillweb.com/wp-content/uploads/2013/12/twitter-bootstrap.jpg" height="50px">
+          </a>
+          <a href="https://appengine.google.com/">
+            <img src="http://3.bp.blogspot.com/-shlkF4-lOrI/UqEk25whCBI/AAAAAAAAAV4/vAwo6UN2Sis/s1600/appengine_final.png" height="50px">
+          </a>
+          <a href="http://www.gravatar.com/">
+            <img src="http://www.digitaldavidson.co.uk/wp-content/uploads/2014/03/gravatar-logo-512.jpg" height="50px">
+          </a>
+        </div>
+      </div>
+
+
+      <!-- Place this tag after the last +1 button tag. -->
+      <script type="text/javascript">
+        (function() {
+          var po = document.createElement('script');
+          po.type = 'text/javascript';
+          po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+      <div id="fb-root"></div>
+      <script>
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+
+
+
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+
+</html>
